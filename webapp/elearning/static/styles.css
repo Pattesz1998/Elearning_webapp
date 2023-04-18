@@ -1,95 +1,91 @@
-/* styles.css */
-
-/* General styles */
+/* General Styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
   line-height: 1.6;
-  color: #333;
 }
 
-/* Container */
-.container {
-  width: 80%;
-  margin: 0 auto;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
 }
 
-/* Form styles */
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  margin: 20px auto;
-}
-
-h2 {
-  color: #333;
-  margin-bottom: 20px;
-}
-
-/* Form fields */
-form p {
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-form label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-form input,
-form textarea,
-form select {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-/* Button */
-.btn {
-  display: inline-block;
+a {
+  color: #007bff;
   text-decoration: none;
-  color: #fff;
-  background-color: #007bff;
-  border: 1px solid #007bff;
-  padding: 8px 16px;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Navigation */
+.navbar {
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+/* Buttons */
+.btn {
   border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 .btn:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* Logout link */
-#logout-link {
-  right: 20px;
-  font-size: 16px;
-  color: #333;
-  text-decoration: none;
-  background-color: #f9f9f9;
-  padding: 8px 16px;
+/* Forms */
+form {
+  background-color: #fff;
   border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.logout-link:hover {
-  color: #007bff;
+form label {
+  font-weight: 500;
 }
 
-.links {
-  display: flex;
-  justify-content: flex-start;
-  width:500px;
+/* Cards */
+.card {
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  border-radius: 4px 4px 0 0;
+}
+
+/* Footers */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
 }

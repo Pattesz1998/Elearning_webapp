@@ -1,0 +1,10 @@
+{% block title %}Courses{% endblock %}
+
+{% block content %}
+  <h1>Courses</h1>
+  <ul>
+    {% for course in courses %}
+      <li><a href="{% url 'elearning:course_detail' pk=course.pk %}">{{ course.name }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

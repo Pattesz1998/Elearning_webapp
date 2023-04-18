@@ -27,6 +27,12 @@
               <a class="nav-link" href="{% url 'elearning:student_dashboard' %}">Home</a>
             {% endif %}
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'elearning:course_create' %}">Create Course</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" a href="{% url 'elearning:logout' %}" id="logout-link">Logout</a>
+          </li>
           </li>
         </ul>
       </div>

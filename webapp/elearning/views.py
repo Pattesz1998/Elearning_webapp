@@ -1,3 +1,6 @@
+from random import random
+
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
@@ -7,6 +10,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from .models import Course, Lesson
 from .forms import CustomUserCreationForm, CourseForm, LessonForm
+
 
 def register(request):
     if request.method == 'POST':
@@ -79,7 +83,6 @@ class TeacherDashboardView(LoginRequiredMixin, UserPassesTestMixin, TemplateView
             lessons = Lesson.objects.filter(course=course)
             course_lessons[course.id] = lessons
         context['course_lessons'] = course_lessons
-
         return context
 
     def test_func(self):
@@ -98,7 +101,7 @@ class TeacherDashboardView(LoginRequiredMixin, UserPassesTestMixin, TemplateView
                 lesson = lesson_form.save(commit=False)
                 lesson.course = Course.objects.get(pk=request.POST.get('course'))
                 lesson.save()
-        return redirect('teacher_dashboard')
+        return redirect('elearning:teacher_dashboard')
 
 class StudentDashboardView(UserPassesTestMixin, ListView):
     model = Course
@@ -107,6 +110,10 @@ class StudentDashboardView(UserPassesTestMixin, ListView):
 
     def test_func(self):
         return self.request.user.role == 'student'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
 class CourseCreateView(LoginRequiredMixin, CreateView):
     model = Course
@@ -183,3 +190,7 @@ class LessonDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def lesson_content(request, pk):
     lesson = get_object_or_404(Lesson, pk=pk)
     return render(request, 'elearning/lesson_content.html', {'lesson': lesson})
+
+def course_list(request):
+    courses = Course.objects.all()
+    return render(request, 'elearning/course_list.html', {'courses': courses})

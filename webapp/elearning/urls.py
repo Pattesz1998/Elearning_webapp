@@ -17,5 +17,6 @@ urlpatterns = [
     path('user_profile/', views.user_profile, name='user_profile'),
     path('course/<int:pk>/lesson_create/', views.LessonCreateView.as_view(), name='lesson_create'),
     path('course/<int:pk>/', views.course_detail, name='course_detail'),
-path('lesson_content/<int:pk>/', views.lesson_content, name='lesson_content'),
+    path('lesson_content/<int:pk>/', views.lesson_content, name='lesson_content'),
+    path('course_list/', views.course_list, name='course_list'),
 ]

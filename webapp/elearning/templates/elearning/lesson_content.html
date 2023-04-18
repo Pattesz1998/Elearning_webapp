@@ -4,5 +4,11 @@
 
 {% block content %}
   <h2>{{ lesson.title }}</h2>
+   {% if lesson.video %}
+    <video width="320" height="240" controls>
+      <source src="{{ lesson.video.url }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  {% endif %}
   <p>{{ lesson.content }}</p>
 {% endblock %}

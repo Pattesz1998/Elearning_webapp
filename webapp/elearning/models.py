@@ -37,6 +37,7 @@ class Course(models.Model):
 class Lesson(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
+    video = models.FileField(upload_to='lesson_videos', blank=True, null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     order = models.PositiveIntegerField()
 
@@ -50,3 +51,7 @@ def reset_courses():
     # Reset primary key sequence for the Course model
     with connection.cursor() as cursor:
         cursor.execute(f"ALTER SEQUENCE {Course._meta.db_table}_id_seq RESTART WITH 1;")
+
+
+
+

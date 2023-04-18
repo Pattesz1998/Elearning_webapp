@@ -1,13 +1,9 @@
-{% extends 'elearning/base.html' %}
+{% extends 'elearning/base1.html' %}
 
 {% block title %}Teacher Dashboard{% endblock %}
 
 {% block content %}
   <h2>Teacher Dashboard</h2>
-  <div class="links">
-    <a href="{% url 'elearning:course_create' %}" class="btn btn-primary mb-3">Create Course</a>
-    <a href="{% url 'elearning:logout' %}" class="btn btn-primary mb-3" id="logout-link">Logout</a>
-  </div>
   {% if courses %}
     <h3>Courses</h3>
     <table class="table">
@@ -18,6 +14,7 @@
           <th>Subject</th>
           <th>Grade Level</th>
           <th>Actions</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -31,41 +28,54 @@
               <a href="{% url 'elearning:course_update' course.pk %}" class="btn btn-secondary btn-sm">Edit</a>
               <a href="{% url 'elearning:course_delete' course.pk %}" class="btn btn-danger btn-sm">Delete</a>
             </td>
+            <td>
+              <button type="button" class="btn btn-info btn-sm" onclick="toggleLessons({{ course.pk }})">Lessons</button>
+            </td>
           </tr>
-          {% if course.lesson_set.all %}
-            <tr>
-              <td colspan="5">
-                <h4>Lessons</h4>
-                <table class="table">
-                  <thead>
+          <tr id="lessons-{{ course.pk }}" style="display:none;">
+            <td colspan="5">
+              <h4>Lessons</h4>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Lesson name</th>
+                    <th>Content</th>
+                    <th>Order</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for lesson in course.lesson_set.all %}
                     <tr>
-                      <th>Lesson name</th>
-                      <th>Content</th>
-                      <th>Order</th>
-                      <th>Actions</th>
+                      <td>{{ lesson.title }}</td>
+                      <td>{{ lesson.content }}</td>
+                      <td>{{ lesson.order }}</td>
+                      <td>
+                        <a href="{% url 'elearning:lesson_update' lesson.pk %}" class="btn btn-secondary btn-sm">Edit</a>
+                        <a href="{% url 'elearning:lesson_delete' lesson.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {% for lesson in course.lesson_set.all %}
-                      <tr>
-                        <td>{{ lesson.title }}</td>
-                        <td>{{ lesson.content }}</td>
-                        <td>{{ lesson.order }}</td>
-                        <td>
-                          <a href="{% url 'elearning:lesson_update' lesson.pk %}" class="btn btn-secondary btn-sm">Edit</a>
-                          <a href="{% url 'elearning:lesson_delete' lesson.pk %}" class="btn btn-danger btn-sm">Delete</a>
-                        </td>
-                      </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-          {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </td>
+          </tr>
         {% endfor %}
       </tbody>
     </table>
   {% else %}
     <p>You don't have any courses yet.</p>
   {% endif %}
+
+  <script>
+    function toggleLessons(courseId) {
+      var lessonsRow = document.getElementById("lessons-" + courseId);
+      if (lessonsRow.style.display === "none") {
+        lessonsRow.style.display = "table-row";
+      } else {
+        lessonsRow.style.display = "none";
+      }
+    }
+  </script>
+
 {% endblock %}

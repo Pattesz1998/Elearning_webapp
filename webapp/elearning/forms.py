@@ -1,6 +1,9 @@
+from random import random
+
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser, Course, Lesson
+
 
 class CustomUserCreationForm(UserCreationForm):
     is_teacher = forms.BooleanField(required=False, initial=False, label="Register as teacher")
@@ -14,6 +17,7 @@ class CourseForm(forms.ModelForm):
         fields = ['title', 'description', 'subject', 'grade_level']
 
 class LessonForm(forms.ModelForm):
+    video = forms.FileField(required=False, label="Video")
     class Meta:
         model = Lesson
-        fields = ['title', 'content', 'order']
+        fields = ['title', 'content', 'order', 'video']
