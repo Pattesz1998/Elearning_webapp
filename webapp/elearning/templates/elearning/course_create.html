@@ -1,0 +1,12 @@
+{% extends 'elearning/base.html' %}
+
+{% block title %}Create Course{% endblock %}
+
+{% block content %}
+<center><h2>Create Course</h2></center>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Create Course</button>
+  </form>
+{% endblock %}

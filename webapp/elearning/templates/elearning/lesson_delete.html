@@ -1,0 +1,13 @@
+{% extends 'elearning/base.html' %}
+
+{% block title %}Delete Lesson{% endblock %}
+
+{% block content %}
+  <h2>Delete Lesson</h2>
+  <p>Are you sure you want to delete the lesson "{{ lesson.title }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete Lesson</button>
+    <a href="{% url 'elearning:teacher_dashboard' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+{% endblock %}

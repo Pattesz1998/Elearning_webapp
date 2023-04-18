@@ -1,0 +1,15 @@
+{% extends 'elearning/base.html' %}
+
+{% block title %}{{ course.title }}{% endblock %}
+
+{% block content %}
+  <h2>{{ course.title }}</h2>
+  <p>{{ course.description }}</p>
+
+  <h3>Lessons</h3>
+  <ul>
+    {% for lesson in lessons %}
+      <li><a href="{% url 'elearning:lesson_content' lesson.pk %}">{{ lesson.title }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
